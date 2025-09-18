@@ -8,19 +8,15 @@ import com.webforj.component.optiondialog.OptionDialog;
 import com.webforj.router.annotation.FrameTitle;
 import com.webforj.router.annotation.Route;
 
-@Route               // navigable view
-@FrameTitle("Login") // browser/tab title
+@Route
+@FrameTitle("Login")
 public class LoginView extends Composite<Div> {
 
   public LoginView() {
-    // webforJ's built-in Login component (includes header, fields, and button)
     Login login = new Login();
     getBoundComponent().add(login);
-
-    // show the login overlay/dialog
     login.open();
 
-    // handle submit: check credentials and give feedback
     login.onSubmit(ev -> {
       String username = ev.getUsername();
       String password = ev.getPassword();
@@ -31,10 +27,8 @@ public class LoginView extends Composite<Div> {
             "Authenticated",
             "Welcome, admin!",
             "OK",
-            MessageDialog.MessageType.INFO
-        );
+            MessageDialog.MessageType.INFO);
       } else {
-        // show error state and keep dialog open
         login.setError(true);
         login.setEnabled(true);
       }
