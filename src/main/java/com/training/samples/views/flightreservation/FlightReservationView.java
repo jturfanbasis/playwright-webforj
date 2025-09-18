@@ -23,7 +23,6 @@ public class FlightReservationView extends Composite<AppLayout> {
   public FlightReservationView() {
     AppLayout self = getBoundComponent();
 
-    // Header
     Toolbar header = new Toolbar()
         .addToStart(new AppDrawerToggle())
         .addToTitle(new H3("Application"));
@@ -31,11 +30,9 @@ public class FlightReservationView extends Composite<AppLayout> {
 
     Button themeToggle = new Button();
 
-    // set initial icon based on current theme
     boolean isDark = "dark".equalsIgnoreCase(App.getTheme()) || "dark-pure".equalsIgnoreCase(App.getTheme());
     themeToggle.setPrefixComponent(TablerIcon.create(isDark ? "sun" : "moon"));
 
-    // click -> toggle theme and swap icon
     themeToggle.addClickListener(e -> {
       String t = App.getTheme();
       boolean darkNow = "dark".equalsIgnoreCase(t) || "dark-pure".equalsIgnoreCase(t);
@@ -51,18 +48,15 @@ public class FlightReservationView extends Composite<AppLayout> {
 
     header.addToEnd(themeToggle);
 
-    // Drawer
     Div drawer = new Div();
     self.addToDrawer(drawer);
 
-    // Drawer Menu
     AppNav nav = new AppNav();
     drawer.add(nav);
 
     Icon homeIcon = TablerIcon.create("home");
     Icon planeIcon = TablerIcon.create("plane");
 
-    // IMPORTANT: use public classes below so router can register them
     nav.addItem(new AppNavItem("Home",
         FlightReservationHomeView.class,
         ParametersBag.of("page=home"),

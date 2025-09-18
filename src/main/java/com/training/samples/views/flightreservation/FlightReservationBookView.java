@@ -33,10 +33,8 @@ public class FlightReservationBookView extends Composite<FlexLayout> {
                 H1 title = new H1("Book a Flight");
 
                 title.setWidth("100%").setStyle("textAlign", "center");
-                // Titles
                 root.add(title);
 
-                // Origin/Destination
                 ChoiceBox fromWhere = new ChoiceBox("Where From").setWidth("220px");
                 ChoiceBox toWhere = new ChoiceBox("Where To").setWidth("220px");
                 FlexLayout routeRow = new FlexLayout()
@@ -49,7 +47,6 @@ public class FlightReservationBookView extends Composite<FlexLayout> {
                 toWhere.setStyle("textAlign", "center");
                 routeRow.add(fromWhere, toWhere);
 
-                // Dates row
                 DateField depart = new DateField(LocalDate.now()).setLabel("Departure Date:").setWidth("220px");
                 DateField ret = new DateField(LocalDate.now()).setLabel("Return Date:").setWidth("220px");
                 FlexLayout dates = new FlexLayout()
@@ -59,17 +56,13 @@ public class FlightReservationBookView extends Composite<FlexLayout> {
                                 .setSpacing("var(--dwc-space-l)");
                 dates.add(depart, ret);
 
-                // Terms checkbox
                 CheckBox agree = new CheckBox("I agree to the terms and conditions");
                 agree.setWidth("100%").setStyle("textAlign", "center");
 
-                // Book button
                 Button bookBtn = new Button("Book Flight").setTheme(ButtonTheme.PRIMARY);
                 bookBtn.setWidth("100%").setStyle("textAlign", "center");
 
-                // Click -> confirm dialog
                 bookBtn.addClickListener(e -> {
-                        // quick validations
                         String o = fromWhere.getValue() == null ? "" : ((String) fromWhere.getValue()).trim();
                         String d = toWhere.getValue() == null ? "" : ((String) toWhere.getValue()).trim();
                         LocalDate date = depart.getValue();
@@ -109,7 +102,6 @@ public class FlightReservationBookView extends Composite<FlexLayout> {
                                                 "Success",
                                                 "Done");
                         }
-                        // If Cancel, do nothing (dialog already closed)
                 });
 
                 String[] airports = new String[] {
