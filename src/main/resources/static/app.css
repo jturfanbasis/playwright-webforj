@@ -1,0 +1,10 @@
+/* Define application theme */
+
+:root {
+  --dwc-color-primary-h: 231;
+  --dwc-color-primary-s: 48%
+}
+html[data-app-theme~='dark'],
+html[data-app-theme~='dark-pure'] {
+    --dwc-color-default-s: 3%
+}
